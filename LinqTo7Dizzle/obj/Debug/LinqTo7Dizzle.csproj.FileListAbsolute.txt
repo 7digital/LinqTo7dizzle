@@ -1,0 +1,8 @@
+C:\LinqTo7Dizzle\LinqTo7Dizzle\obj\Debug\ResolveAssemblyReference.cache
+C:\LinqTo7Dizzle\LinqTo7Dizzle\bin\Debug\LinqTo7Dizzle.dll
+C:\LinqTo7Dizzle\LinqTo7Dizzle\bin\Debug\LinqTo7Dizzle.pdb
+C:\LinqTo7Dizzle\LinqTo7Dizzle\bin\Debug\DotNetOpenAuth.dll
+C:\LinqTo7Dizzle\LinqTo7Dizzle\bin\Debug\DotNetOpenAuth.pdb
+C:\LinqTo7Dizzle\LinqTo7Dizzle\bin\Debug\DotNetOpenAuth.xml
+C:\LinqTo7Dizzle\LinqTo7Dizzle\obj\Debug\LinqTo7Dizzle.dll
+C:\LinqTo7Dizzle\LinqTo7Dizzle\obj\Debug\LinqTo7Dizzle.pdb

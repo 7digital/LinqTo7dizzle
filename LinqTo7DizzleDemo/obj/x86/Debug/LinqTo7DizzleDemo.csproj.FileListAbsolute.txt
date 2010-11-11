@@ -1,0 +1,5 @@
+C:\LinqTo7Dizzle\LinqTo7DizzleDemo\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\LinqTo7Dizzle\LinqTo7DizzleDemo\bin\Debug\LinqTo7DizzleDemo.exe
+C:\LinqTo7Dizzle\LinqTo7DizzleDemo\bin\Debug\LinqTo7DizzleDemo.pdb
+C:\LinqTo7Dizzle\LinqTo7DizzleDemo\obj\x86\Debug\LinqTo7DizzleDemo.exe
+C:\LinqTo7Dizzle\LinqTo7DizzleDemo\obj\x86\Debug\LinqTo7DizzleDemo.pdb
