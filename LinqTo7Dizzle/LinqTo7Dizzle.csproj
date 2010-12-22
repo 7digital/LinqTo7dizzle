@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -44,13 +45,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IExecute.cs" />
-    <Compile Include="OAuth\DesktopAuthorize.cs" />
-    <Compile Include="OAuth\IAuthorize.cs" />
-    <Compile Include="OAuth\ServiceDescriptions.cs" />
+    <Compile Include="Chart\ChartRequestProcessor.cs" />
+    <Compile Include="ExpressionVisitors\ExpressionVisitor.cs" />
+    <Compile Include="Entities\Entity.cs" />
+    <Compile Include="ExpressionVisitors\ExpressionTreeModifier.cs" />
+    <Compile Include="ExpressionVisitors\TakeFinder.cs" />
+    <Compile Include="IExecutor.cs" />
+    <Compile Include="IRequestProcessor.cs" />
+    <Compile Include="Entities\Release.cs" />
+    <Compile Include="Chart\ChartQueryProvider.cs" />
     <Compile Include="SevenDizzleContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SevenDizzleExecute.cs" />
+    <Compile Include="SevenDizzleExecutor.cs" />
+    <Compile Include="Chart\ChartQueryable.cs" />
+    <Compile Include="TypeSystem.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="OAuth\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

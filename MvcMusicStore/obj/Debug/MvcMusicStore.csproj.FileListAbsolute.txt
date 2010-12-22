@@ -1,5 +1,0 @@
-C:\LinqTo7Dizzle\MvcMusicStore\bin\MvcMusicStore.dll
-C:\LinqTo7Dizzle\MvcMusicStore\bin\MvcMusicStore.pdb
-C:\LinqTo7Dizzle\MvcMusicStore\obj\Debug\ResolveAssemblyReference.cache
-C:\LinqTo7Dizzle\MvcMusicStore\obj\Debug\MvcMusicStore.dll
-C:\LinqTo7Dizzle\MvcMusicStore\obj\Debug\MvcMusicStore.pdb

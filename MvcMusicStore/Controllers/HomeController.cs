@@ -1,16 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using MvcMusicStore.Models;
+using LinqTo7Dizzle;
+using LinqTo7Dizzle.Entities;
 
 namespace MvcMusicStore.Controllers
 {
     public class HomeController : Controller
     {
-        //
-        // GET: /Home/
-
-        MusicStoreEntities storeDB = new MusicStoreEntities();
+		private readonly SevenDizzleContext _context = new SevenDizzleContext("http://api.7digital.com/1.2/");
 
         public ActionResult Index()
         {
@@ -20,15 +18,13 @@ namespace MvcMusicStore.Controllers
             return View(albums);
         }
 
-        private List<Album> GetTopSellingAlbums(int count)
+        private List<Release> GetTopSellingAlbums(int count)
         {
-            // Group the order details by album and return
-            // the albums with the highest count
+        	var topSellingAlbums = _context.Chart<Release>()
+				.Take(count)
+        		.ToList();
 
-            return storeDB.Albums
-                .OrderByDescending(a => a.OrderDetails.Count())
-                .Take(count)
-                .ToList();
+        	return topSellingAlbums;
         }
     }
 }

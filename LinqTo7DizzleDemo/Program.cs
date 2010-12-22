@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Configuration;
+using System.Linq;
+using LinqTo7Dizzle;
+using LinqTo7Dizzle.Entities;
 
 namespace LinqTo7DizzleDemo
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             var consumerKey = ConfigurationManager.AppSettings["consumerKey"];
             var consumerSecret = ConfigurationManager.AppSettings["consumerSecret"];
@@ -20,12 +23,16 @@ namespace LinqTo7DizzleDemo
             }
 
             const string baseUrl = "http://api.7digital.com/1.2/";
-            //var authorization = new DesktopAuthorize(consumerKey, consumerSecret);
 
-            //using (var context = new SevenDizzleContext(authorization, baseUrl))
-            //{
+			using (var context = new SevenDizzleContext(baseUrl))
+			{
+				var releases = context.Chart<Release>().Take(5).ToList();
 
-            //}
+				for (var i = 1; i < releases.Count; i++)
+				{
+					Console.WriteLine(string.Format("{0}: {1}", i, releases[i]));
+				}
+			}
         }
     }
 }
