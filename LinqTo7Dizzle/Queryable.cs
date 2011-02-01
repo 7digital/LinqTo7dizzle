@@ -4,22 +4,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace LinqTo7Dizzle.Chart
+namespace LinqTo7Dizzle
 {
-	public class ChartQueryable<T> : IOrderedQueryable<T>
+	public class Queryable<T> : IOrderedQueryable<T>
 	{
 		private readonly IQueryProvider _provider;
 
-		public ChartQueryable(string baseUrl, IExecutor executor)
+		public Queryable(string baseUrl, IExecutor executor)
 		{
 			Expression = Expression.Constant(this);
-			_provider = new ChartQueryProvider<T>(baseUrl, executor);
+			_provider = new QueryProvider<T>(baseUrl, executor);
 		}
 
-		public ChartQueryable(string baseUrl, IExecutor executor, Expression expression)
+		public Queryable(string baseUrl, IExecutor executor, Expression expression)
 		{
 			Expression = expression;
-			_provider = new ChartQueryProvider<T>(baseUrl, executor);
+			_provider = new QueryProvider<T>(baseUrl, executor);
 		}
 
 		IEnumerator<T> IEnumerable<T>.GetEnumerator()

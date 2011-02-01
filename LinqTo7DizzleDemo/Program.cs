@@ -26,12 +26,7 @@ namespace LinqTo7DizzleDemo
 
 			using (var context = new SevenDizzleContext(baseUrl))
 			{
-				var releases = context.Chart<Release>().Take(5).ToList();
-
-				for (var i = 1; i < releases.Count; i++)
-				{
-					Console.WriteLine(string.Format("{0}: {1}", i, releases[i]));
-				}
+				var releases = context.Chart<Release>().Count();
 			}
         }
     }

@@ -3,15 +3,16 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using LinqTo7Dizzle.ExpressionVisitors;
+using LinqTo7Dizzle.RequestProcessors;
 
-namespace LinqTo7Dizzle.Chart
+namespace LinqTo7Dizzle
 {
-	public class ChartQueryProvider<T> : IQueryProvider 
+	public class QueryProvider<T> : IQueryProvider 
 	{
 		private readonly string _baseUrl;
 		private readonly IExecutor _executor;
 
-		public ChartQueryProvider(string baseUrl, IExecutor executor)
+		public QueryProvider(string baseUrl, IExecutor executor)
 		{
 			_baseUrl = baseUrl;
 			_executor = executor;
@@ -22,8 +23,8 @@ namespace LinqTo7Dizzle.Chart
 			var elementType = TypeSystem.GetElementType(expression.Type);
 			try
 			{
-				var genericType = typeof(ChartQueryable<>).MakeGenericType(elementType);
-				var args = new object[] { this, expression };
+				var genericType = typeof(Queryable<>).MakeGenericType(elementType);
+				var args = new object[] { _baseUrl, _executor };
 				return (IQueryable)Activator.CreateInstance(genericType, args);
 			}
 			catch (TargetInvocationException ex)
@@ -34,7 +35,7 @@ namespace LinqTo7Dizzle.Chart
 
 		public IQueryable<TResult> CreateQuery<TResult>(Expression expression)
 		{
-			return new ChartQueryable<TResult>(_baseUrl, _executor, expression);
+			return new Queryable<TResult>(_baseUrl, _executor, expression);
 		}
 
 		public object Execute(Expression expression)
@@ -44,22 +45,30 @@ namespace LinqTo7Dizzle.Chart
 
 		public TResult Execute<TResult>(Expression expression)
 		{
-			var isEnumerable = typeof(TResult).Name == "IEnumerable`1" || typeof(TResult).Name == "IEnumerable";
-
-			var requestProcessor = new ChartRequestProcessor<T>(_baseUrl);
+			var requestProcessor = GetRequestProcessor();
 			var parameters = requestProcessor.GetParameters(expression);
 			var url = requestProcessor.BuildUri(parameters);
 
 			var results = _executor.Query(url, requestProcessor);
 			var queryableList = requestProcessor.ProcessResults(results);
-			var queryableItems = queryableList.AsQueryable();
 
+			if (typeof(TResult) == typeof(Int32))
+				return (TResult)Convert.ChangeType(requestProcessor.TotalItems, typeof(TResult));
+
+			var queryableItems = queryableList.AsQueryable();
 			var treeCopier = new ExpressionTreeModifier<T>(queryableItems);
 			var newExpressionTree = treeCopier.CopyAndModify(expression);
+
+			var isEnumerable = typeof(TResult).Name == "IEnumerable`1" || typeof(TResult).Name == "IEnumerable";
 
 			return isEnumerable
 				? (TResult)queryableItems.Provider.CreateQuery(newExpressionTree)
 				: (TResult)queryableItems.Provider.Execute(newExpressionTree);
+		}
+
+		private ChartRequestProcessor<T> GetRequestProcessor()
+		{
+			return new ChartRequestProcessor<T>(_baseUrl);
 		}
 	}
 }

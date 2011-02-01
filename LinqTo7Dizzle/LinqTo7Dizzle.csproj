@@ -45,7 +45,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Chart\ChartRequestProcessor.cs" />
+    <Compile Include="RequestProcessors\ChartRequestProcessor.cs" />
+    <Compile Include="Entities\Tag.cs" />
+    <Compile Include="ExpressionVisitors\CountFinder.cs" />
     <Compile Include="ExpressionVisitors\ExpressionVisitor.cs" />
     <Compile Include="Entities\Entity.cs" />
     <Compile Include="ExpressionVisitors\ExpressionTreeModifier.cs" />
@@ -53,11 +55,12 @@
     <Compile Include="IExecutor.cs" />
     <Compile Include="IRequestProcessor.cs" />
     <Compile Include="Entities\Release.cs" />
-    <Compile Include="Chart\ChartQueryProvider.cs" />
+    <Compile Include="QueryProvider.cs" />
     <Compile Include="SevenDizzleContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SevenDizzleExecutor.cs" />
-    <Compile Include="Chart\ChartQueryable.cs" />
+    <Compile Include="Queryable.cs" />
+    <Compile Include="TagsRequestProcessor.cs" />
     <Compile Include="TypeSystem.cs" />
   </ItemGroup>
   <ItemGroup>

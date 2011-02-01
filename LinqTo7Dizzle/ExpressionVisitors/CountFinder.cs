@@ -7,6 +7,7 @@
  * http://msdn.microsoft.com/en-us/library/bb546158.aspx
  * 
  * Renamed and Documented By: Joe Mayo, 10/12/08
+ * Lifted from LINQ to Twitter: GHay
  * *********************************************************/
 
 using System;
@@ -14,25 +15,15 @@ using System.Linq.Expressions;
 
 namespace LinqTo7Dizzle.ExpressionVisitors
 {
-	internal class TakeFinder : ExpressionVisitor
+	internal class CountFinder : ExpressionVisitor
 	{
-		/// <summary>
-		/// holds first where expression when found
-		/// </summary>
-		private MethodCallExpression _expression;
+		private bool _found;
 
-		/// <summary>
-		/// initiates search for first where clause
-		/// </summary>
-		/// <param name="expression">expression tree to search</param>
-		/// <returns>MethodCallExpression for first where clause</returns>
-		public int Find(Expression expression)
+		public bool Find(Expression expression)
 		{
 			Visit(expression);
 
-			return _expression != null
-			       	? (int) ((ConstantExpression) _expression.Arguments[1]).Value
-			       	: 10;
+			return _found;
 		}
 
 		/// <summary>
@@ -44,12 +35,10 @@ namespace LinqTo7Dizzle.ExpressionVisitors
 		/// <exception cref="Exception">Thrown if multiple Take clauses are present.</exception>
 		protected override Expression VisitMethodCall(MethodCallExpression expression)
 		{
-			if (expression.Method.Name == "Take")
+			if (expression.Method.Name == "Count")
 			{
-				if (_expression != null)
-					throw new Exception("Take 2!!1!");
-
-				_expression = expression;
+				_found = true;
+				return expression;
 			}
 
 			// look at extension source to see if there is an earlier where

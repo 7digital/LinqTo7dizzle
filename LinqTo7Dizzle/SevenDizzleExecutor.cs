@@ -7,46 +7,40 @@ namespace LinqTo7Dizzle
 {
 	internal class SevenDizzleExecutor : IExecutor
 	{
-		private Exception _asyncException;
-		private string _responseXml;
-		private ManualResetEvent _resetEvent;
-
 		public string Query<T>(Uri uri, IRequestProcessor<T> requestProcessor)
 		{
 			var request = WebRequest.Create(uri);
 
-			_asyncException = null;
-			_responseXml = string.Empty;
+			Exception asyncException = null;
+			var responseXml = string.Empty;
 
-			_resetEvent = new ManualResetEvent(false);
+			var resetEvent = new ManualResetEvent(false);
 
-			request.BeginGetResponse(ar => OnResponse(request, ar), null);
-
-			_resetEvent.WaitOne();
-
-			if (_asyncException != null)
+			request.BeginGetResponse(ar =>
 			{
-				throw _asyncException;
+				try
+				{
+					var response = request.EndGetResponse(ar) as HttpWebResponse;
+					responseXml = GetResponse(response);
+				}
+				catch (Exception ex)
+				{
+					asyncException = ex;
+				}
+				finally
+				{
+					resetEvent.Set();
+				}
+			}, null);
+
+			resetEvent.WaitOne();
+
+			if (asyncException != null)
+			{
+				throw asyncException;
 			}
 
-			return _responseXml;
-		}
-
-		private void OnResponse(WebRequest request, IAsyncResult asyncResult)
-		{
-			try
-			{
-				var response = request.EndGetResponse(asyncResult) as HttpWebResponse;
-				_responseXml = GetResponse(response);
-			}
-			catch (Exception ex)
-			{
-				_asyncException = ex;
-			}
-			finally
-			{
-				_resetEvent.Set();
-			}
+			return responseXml;
 		}
 
 		private static string GetResponse(WebResponse response)

@@ -6,11 +6,15 @@ using System.Xml.Linq;
 using LinqTo7Dizzle.Entities;
 using LinqTo7Dizzle.ExpressionVisitors;
 
-namespace LinqTo7Dizzle.Chart
+namespace LinqTo7Dizzle.RequestProcessors
 {
 	internal class ChartRequestProcessor<T> : IRequestProcessor<T>
 	{
 		private readonly string _baseUrl;
+
+		public int Page { get; private set; }
+		public int PageSize { get; private set; }
+		public int TotalItems { get; private set; }
 
 		public ChartRequestProcessor(string baseUrl)
 		{
@@ -30,7 +34,13 @@ namespace LinqTo7Dizzle.Chart
 		public IEnumerable<T> ProcessResults(string results)
 		{
 			var response = XElement.Parse(results);
-			var chartItems = response.Element("chart").Elements("chartItem");
+			var chart = response.Element("chart");
+			
+			Page = Convert.ToInt32(chart.Element("page").Value);
+			PageSize = Convert.ToInt32(chart.Element("pageSize").Value);
+			TotalItems = Convert.ToInt32(chart.Element("totalItems").Value);
+
+			var chartItems = chart.Elements("chartItem");
 
 			switch (typeof(T).Name)
 			{
@@ -47,8 +57,15 @@ namespace LinqTo7Dizzle.Chart
 
 			parameters.Add("oauth_consumer_key", "test-api");
 
-			var pageSize = new TakeFinder().Find(expression);
-			parameters.Add("pageSize", pageSize.ToString());
+			if (new CountFinder().Find(expression))
+			{
+				parameters.Add("pageSize", "1");
+			}
+			else
+			{
+				var pageSize = new TakeFinder().Find(expression);
+				parameters.Add("pageSize", pageSize.ToString());
+			}
 
 			return parameters;
 		}
