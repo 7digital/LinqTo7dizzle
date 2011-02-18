@@ -20,11 +20,11 @@ namespace MvcMusicStore.Controllers
 
         private List<Release> GetTopSellingAlbums(int count)
         {
-        	var topSellingAlbums = _context.Chart<Release>()
+            // Group the order details by album and return
+            // the albums with the highest count
+			return _context.Chart<Release>()
 				.Take(count)
-        		.ToList();
-
-        	return topSellingAlbums;
+				.ToList();
         }
     }
 }

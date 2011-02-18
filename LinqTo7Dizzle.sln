@@ -5,7 +5,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinqTo7Dizzle", "LinqTo7Diz
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinqTo7DizzleDemo", "LinqTo7DizzleDemo\LinqTo7DizzleDemo.csproj", "{8E188046-AC16-4038-99C8-3E91E513529A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcMusicStore", "MvcMusicStore\MvcMusicStore.csproj", "{3C5D19F8-3ADE-4341-BA50-ADAD1A3FD960}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcMusicStore", "MvcMusicStore\MvcMusicStore.csproj", "{A1DDF7DA-D1FB-4B52-A7B3-D2A2099482CE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,16 +37,16 @@ Global
 		{8E188046-AC16-4038-99C8-3E91E513529A}.Release|Mixed Platforms.Build.0 = Release|x86
 		{8E188046-AC16-4038-99C8-3E91E513529A}.Release|x86.ActiveCfg = Release|x86
 		{8E188046-AC16-4038-99C8-3E91E513529A}.Release|x86.Build.0 = Release|x86
-		{3C5D19F8-3ADE-4341-BA50-ADAD1A3FD960}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3C5D19F8-3ADE-4341-BA50-ADAD1A3FD960}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3C5D19F8-3ADE-4341-BA50-ADAD1A3FD960}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{3C5D19F8-3ADE-4341-BA50-ADAD1A3FD960}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{3C5D19F8-3ADE-4341-BA50-ADAD1A3FD960}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{3C5D19F8-3ADE-4341-BA50-ADAD1A3FD960}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3C5D19F8-3ADE-4341-BA50-ADAD1A3FD960}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3C5D19F8-3ADE-4341-BA50-ADAD1A3FD960}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{3C5D19F8-3ADE-4341-BA50-ADAD1A3FD960}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{3C5D19F8-3ADE-4341-BA50-ADAD1A3FD960}.Release|x86.ActiveCfg = Release|Any CPU
+		{A1DDF7DA-D1FB-4B52-A7B3-D2A2099482CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1DDF7DA-D1FB-4B52-A7B3-D2A2099482CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1DDF7DA-D1FB-4B52-A7B3-D2A2099482CE}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{A1DDF7DA-D1FB-4B52-A7B3-D2A2099482CE}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{A1DDF7DA-D1FB-4B52-A7B3-D2A2099482CE}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A1DDF7DA-D1FB-4B52-A7B3-D2A2099482CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1DDF7DA-D1FB-4B52-A7B3-D2A2099482CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1DDF7DA-D1FB-4B52-A7B3-D2A2099482CE}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{A1DDF7DA-D1FB-4B52-A7B3-D2A2099482CE}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{A1DDF7DA-D1FB-4B52-A7B3-D2A2099482CE}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
