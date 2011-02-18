@@ -19,7 +19,7 @@ namespace LinqTo7Dizzle.ExpressionVisitors
 
 		protected override Expression VisitConstant(ConstantExpression expression)
 		{
-			return expression.Type.Name == "ChartQueryable`1" 
+			return expression.Type.Name == "Queryable`1" 
 				? Expression.Constant(_queryableItems) 
 				: expression;
 		}
